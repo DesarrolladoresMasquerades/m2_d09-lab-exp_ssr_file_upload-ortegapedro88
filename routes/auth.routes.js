@@ -10,6 +10,7 @@ const saltRounds = 10;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
+const Post = require("../models/Post.model");
 
 // require (import) middleware functions
 const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
@@ -154,6 +155,30 @@ const imageUrl = req.file.path
 User.findByIdAndUpdate(id, {imageUrl},{new: true})
 .then((user)=>{
   res.render("users/user-profile", {user: user})
+})
+})
+
+
+router.route("/post", )
+.get((req, res) => {
+  res.render("users/post-form");
+})
+.post( fileUploader.single("postImg"),(req,res)=>{
+const id = req.session.user._id
+
+const content = req.body.content
+const picName = req.body.picName
+const picPath = req.file.path
+const creatorId = id
+
+Post.create({
+  content,
+  creatorId,
+  picPath,
+  picName
+})
+.then((user)=>{
+  res.redirect("/")
 })
 })
 

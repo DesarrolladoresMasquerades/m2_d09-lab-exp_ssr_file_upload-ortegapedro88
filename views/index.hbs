@@ -1,2 +1,8 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div>
+    {{#each posts}}
+    <h1>{{this.picName}}</h1>
+    
+    <img src="{{this.picPath}}" alt="">
+    <a href="/auth/post/{{this.creatorId}}"><button>See details</button></a>
+    {{/each}}
+</div>
